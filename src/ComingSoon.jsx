@@ -1,16 +1,23 @@
 // ComingSoon.js
-import React from "react";
+import React, { useState } from "react";
 import logo from './assets/Untitled (4).jpg'
 
 const ComingSoon = () => {
+  const [state, setState] = useState('Notify Me');
+
+  const handleClick = () => {
+    // Toggle state message between "Notify Me" and "Notified"
+    setState((prevState) => ('Notified'));
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white overflow-hidden">
       
       {/* Logo and Brand Name */}
       <div className="flex flex-col items-center space-y-3 mb-10">
         {/* Placeholder Logo */}
-        <div className="bg-gray-100 p-4 rounded-full shadow-lg transform hover:scale-105 transition duration-300">
-          <img src={logo} className="h-20 object-center" alt="" />
+        <div className=" p-4 rounded-full shadow-lg transform hover:scale-105 transition duration-300">
+          <img src={logo} className="w-32 h-32 rounded-full transform hover:scale-110" alt="Zeecode Solutions Logo" />
         </div>
         {/* Brand Name */}
         <h2 className="text-2xl md:text-4xl font-semibold">Zeecode Solutions</h2>
@@ -34,8 +41,13 @@ const ComingSoon = () => {
       </div>
 
       {/* Notify Me Button */}
-      <button className="mt-10 md:mt-16 px-6 py-3 md:px-8 md:py-4 rounded-full text-white bg-gray-700 hover:bg-gray-600 transition duration-300 shadow-lg hover:shadow-2xl transform hover:scale-105">
-        Notify Me
+      <button
+        onClick={handleClick}
+        className={`${
+          state === 'Notify Me' ? 'bg-gray-700' : 'bg-green-500'
+        } mt-10 md:mt-16 px-6 py-3 md:px-8 md:py-4 rounded-full text-white hover:bg-gray-600 transition duration-300 shadow-lg hover:shadow-2xl transform hover:scale-105`}
+      >
+        {state}
       </button>
     </div>
   );
